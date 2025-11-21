@@ -1,5 +1,8 @@
 package com.ean.poo.model;
 
+/**
+ * Representa una palabra del juego con su categoría y pista
+ */
 public class Word {
     private String text;
     private String category;
@@ -27,8 +30,13 @@ public class Word {
         return text.length();
     }
 
+    /**
+     * Verifica si la palabra contiene una letra
+     * 
+     * @param letter La letra a buscar
+     * @return true si la letra está en la palabra
+     */
     public boolean containsLetter(char letter) {
         return text.indexOf(Character.toUpperCase(letter)) >= 0;
     }
 }
-

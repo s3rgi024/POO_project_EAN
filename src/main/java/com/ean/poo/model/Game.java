@@ -3,6 +3,9 @@ package com.ean.poo.model;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Controla la lógica del juego del ahorcado
+ */
 public class Game {
     private static final int MAX_ATTEMPTS = 7;
     private static final int TOTAL_HINTS = 3;
@@ -45,6 +48,12 @@ public class Game {
         won = false;
     }
 
+    /**
+     * Intenta adivinar una letra
+     * 
+     * @param letter La letra a adivinar
+     * @return true si la letra está en la palabra
+     */
     public boolean tryLetter(char letter) {
         letter = Character.toUpperCase(letter);
         
@@ -67,15 +76,30 @@ public class Game {
         }
     }
 
+    /**
+     * Usa la pista de categoría
+     * 
+     * @return La categoría de la palabra, o null si ya se usó
+     */
     public String useCategoryHint() {
         if (categoryHintUsed || availableHints <= 0) {
             return null;
         }
         categoryHintUsed = true;
         availableHints--;
+        remainingAttempts--;
+        if (remainingAttempts <= 0) {
+            gameOver = true;
+            won = false;
+        }
         return currentWord.getCategory();
     }
 
+    /**
+     * Usa la pista de letra aleatoria
+     * 
+     * @return La letra revelada, o null si ya se usó
+     */
     public Character useLetterHint() {
         if (letterHintUsed || availableHints <= 0) {
             return null;
@@ -99,6 +123,11 @@ public class Game {
         
         letterHintUsed = true;
         availableHints--;
+        remainingAttempts--;
+        if (remainingAttempts <= 0) {
+            gameOver = true;
+            won = false;
+        }
         
         int randomIndex = random.nextInt(missingLetters.size());
         char revealedLetter = missingLetters.get(randomIndex);
@@ -108,12 +137,22 @@ public class Game {
         return revealedLetter;
     }
 
+    /**
+     * Usa la pista de texto
+     * 
+     * @return La pista escrita, o null si ya se usó
+     */
     public String useTextHint() {
         if (textHintUsed || availableHints <= 0) {
             return null;
         }
         textHintUsed = true;
         availableHints--;
+        remainingAttempts--;
+        if (remainingAttempts <= 0) {
+            gameOver = true;
+            won = false;
+        }
         return currentWord.getHint();
     }
 
@@ -200,4 +239,3 @@ public class Game {
         this.availableHints = hints;
     }
 }
-

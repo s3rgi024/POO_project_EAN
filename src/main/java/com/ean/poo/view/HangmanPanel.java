@@ -3,6 +3,9 @@ package com.ean.poo.view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que dibuja el ahorcado progresivamente según los errores
+ */
 public class HangmanPanel extends JPanel {
     private int wrongAttempts;
     private boolean gameLost;
@@ -106,4 +109,3 @@ public class HangmanPanel extends JPanel {
         g.fillPolygon(xPoints, yPoints, 3);
     }
 }
-

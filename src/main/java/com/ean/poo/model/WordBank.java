@@ -3,6 +3,9 @@ package com.ean.poo.model;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Almacena y gestiona el banco de 200 palabras organizadas en 5 categorías
+ */
 public class WordBank {
     private ArrayList<Word> words;
     private Random random;
@@ -245,4 +248,3 @@ public class WordBank {
         return words.size();
     }
 }
-

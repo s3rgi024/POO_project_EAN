@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Ventana principal del juego del ahorcado
+ */
 public class GameWindow extends JFrame {
     private Game game;
     private HangmanPanel hangmanPanel;
@@ -243,6 +246,13 @@ public class GameWindow extends JFrame {
             infoArea.append("PISTA USADA: La categoría es " + category + "\n");
             infoArea.append("(Se dibujó una parte del ahorcado)\n");
             updateInterface();
+            if (game.isGameOver()) {
+                if (game.hasWon()) {
+                    showVictoryMessage();
+                } else {
+                    showDefeatMessage();
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, 
                 "¡Pista ya usada o no hay pistas disponibles!", 
@@ -258,8 +268,12 @@ public class GameWindow extends JFrame {
             infoArea.append("(Se dibujó una parte del ahorcado)\n");
             disableLetterButton(letter);
             updateInterface();
-            if (game.isGameOver() && game.hasWon()) {
-                showVictoryMessage();
+            if (game.isGameOver()) {
+                if (game.hasWon()) {
+                    showVictoryMessage();
+                } else {
+                    showDefeatMessage();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, 
@@ -275,6 +289,13 @@ public class GameWindow extends JFrame {
             infoArea.append("PISTA USADA: " + hint + "\n");
             infoArea.append("(Se dibujó una parte del ahorcado)\n");
             updateInterface();
+            if (game.isGameOver()) {
+                if (game.hasWon()) {
+                    showVictoryMessage();
+                } else {
+                    showDefeatMessage();
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, 
                 "¡Pista ya usada o no hay pistas disponibles!", 
@@ -370,4 +391,3 @@ public class GameWindow extends JFrame {
         updateInterface();
     }
 }
-
