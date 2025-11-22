@@ -228,7 +228,7 @@ public class Game {
 
     public int getTotalDrawnParts() {
         int hintsUsed = TOTAL_HINTS - availableHints;
-        return getWrongAttemptsCount() + hintsUsed;
+        return wrongLetters.size() + hintsUsed;
     }
 
     public void setRemainingAttempts(int attempts) {
